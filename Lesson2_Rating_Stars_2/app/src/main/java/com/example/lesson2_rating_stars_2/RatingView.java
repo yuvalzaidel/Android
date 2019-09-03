@@ -5,12 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class RatingView extends LinearLayout {
 
     private CheckBox[] chkStars;
     private int value;
     private OnRatingChangedListener changedListener;
+    private TextView lblQuestion;
 
     public RatingView(Context context) {
         super(context);
@@ -24,7 +26,15 @@ public class RatingView extends LinearLayout {
             chkStar.setOnClickListener(listener);
         }
         value = -1;
+        lblQuestion = layout.findViewById(R.id.lblQuestion);
+
     }
+
+    public void setQuestion(String question){
+        lblQuestion.setText(question);
+    }
+
+
 
     private OnClickListener listener = new OnClickListener() {
         @Override

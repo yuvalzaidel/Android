@@ -11,24 +11,27 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private LinearLayout mainLayout;
+    private String[] questions = {"question 1", "question 2"};
+    private RatingView[] ratingViews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainLayout = findViewById(R.id.mainLayout);
-
-        RatingView ratingView = new RatingView(this);
+        ratingViews = new RatingView[questions.length];
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
-        mainLayout.addView(ratingView, layoutParams);
-        ratingView.setOnRatingChangedListener(new RatingView.OnRatingChangedListener() {
-            @Override
-            public void onRatingChanged(RatingView ratingView) {
-                Toast.makeText(MainActivity.this, "changed to: " + ratingView.getValue(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        for (int i = 0; i < questions.length; i++) {
+            String question = questions[i];
+            RatingView ratingView = new RatingView(this);
+            ratingViews[i] = ratingView;
+            mainLayout.addView(ratingView, layoutParams);
+            ratingView.setOnRatingChangedListener(listener);
+            ratingView.setQuestion(question);
+        }
+
 
 
         /*LinearLayout layout1 = new LinearLayout(this);
@@ -50,4 +53,18 @@ public class MainActivity extends AppCompatActivity {
 
         mainLayout.addView(layout1, layoutParams1);*/
     }
+
+    private void getResults(){
+        int[] results = new int[questions.length];
+        for (int i = 0; i < ratingViews.length; i++) {
+            results[i] = ratingViews[i].getValue();
+        }
+    }
+
+    private RatingView.OnRatingChangedListener listener = new RatingView.OnRatingChangedListener() {
+        @Override
+        public void onRatingChanged(RatingView ratingView) {
+            Toast.makeText(MainActivity.this, "changed to: " + ratingView.getValue(), Toast.LENGTH_SHORT).show();
+        }
+    };
 }

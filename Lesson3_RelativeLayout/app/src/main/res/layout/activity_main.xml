@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="username:"
+        android:id="@+id/lblUserName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"/>
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:id="@+id/txtUserName"
+        android:layout_toRightOf="@id/lblUserName"
+        android:layout_alignBaseline="@id/lblUserName"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="password: "
+        android:id="@+id/lblPassword"
+        android:layout_below="@id/lblUserName"
+        android:layout_alignLeft="@id/lblUserName"/>
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:id="@+id/txtPassword"
+        android:inputType="textPassword"
+        android:layout_toRightOf="@id/lblPassword"
+        android:layout_alignBaseline="@id/lblPassword"/>
+
+
+
+</RelativeLayout>
